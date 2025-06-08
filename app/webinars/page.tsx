@@ -1,8 +1,9 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import {
   Calendar,
   Clock,
-  User,
   PlayCircle,
   ChevronRight,
   Star,
@@ -10,6 +11,7 @@ import {
   Video,
   Eye,
 } from "lucide-react";
+import Image from "next/image";
 
 const webinars = [
   {
@@ -100,10 +102,12 @@ const WebinarCard = ({
       <div className="card-header">
         <div className="speaker-info">
           <div className="avatar-container">
-            <img
+            <Image
               src={webinar.avatar}
               alt={webinar.speaker}
               className="avatar"
+              width={60}
+              height={60}
             />
             <div className="avatar-ring"></div>
           </div>
@@ -222,7 +226,7 @@ export default function App() {
         <div className="section-header">
           <h2 className="section-title">Upcoming Sessions</h2>
           <p className="section-subtitle">
-            Don't miss these expertly crafted sessions
+            Don&apos;t miss these expertly crafted sessions
           </p>
         </div>
 
