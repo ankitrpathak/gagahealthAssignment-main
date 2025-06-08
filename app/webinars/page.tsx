@@ -56,15 +56,7 @@ const WebinarCard: React.FC<(typeof webinars)[0]> = ({
       </div>
     </div>
     <button
-      style={{
-        padding: "8px 18px",
-        backgroundColor: "#0095f6",
-        color: "#fff",
-        border: "none",
-        borderRadius: "4px",
-        cursor: "pointer",
-        fontWeight: 600,
-      }}
+      className="view-details-btn"
       onClick={() => {
         console.log(`Viewing details for webinar ID: ${id}`);
       }}
@@ -79,7 +71,7 @@ export default function WebinarsPage() {
     <div className="webinars-bg">
       <div className="webinars-container">
         <h1 className="webinars-heading">🎥 Upcoming Live Webinars</h1>
-        <div className="webinar-cards-row">
+        <div className="webinar-cards-grid">
           {webinars.map((webinar) => (
             <WebinarCard key={webinar.id} {...webinar} />
           ))}
@@ -92,86 +84,100 @@ export default function WebinarsPage() {
           display: flex;
           align-items: center;
           justify-content: center;
+          padding: 40px 16px;
         }
+
         .webinars-container {
-          max-width: 900px;
-          margin: 40px auto;
-          background: rgba(255, 255, 255, 0.9);
+          width: 100%;
+          max-width: 1200px;
+          background: #ffffffee;
           border-radius: 24px;
           box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
-          padding: 40px 32px;
+          padding: 40px 24px;
         }
+
         .webinars-heading {
           text-align: center;
-          font-size: 2.5rem;
+          font-size: 2.2rem;
           font-weight: 700;
           margin-bottom: 2.5rem;
           letter-spacing: 0.02em;
           color: #1a237e;
           font-family: "Segoe UI", "Inter", Arial, sans-serif;
         }
-        .webinar-cards-row {
+
+        .webinar-cards-grid {
           display: flex;
-          flex-direction: row;
-          gap: 15px;
-          overflow-x: auto;
-          padding-bottom: 8px;
-          scrollbar-width: thin;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: center;
         }
+
         .webinar-card {
           background: #fff;
+          border: 2px solid #000;
           border-radius: 16px;
-          box-shadow: 0 2px 12px rgba(26, 35, 126, 0.08);
-          padding: 28px 20px 20px 20px;
-          min-width: 320px;
+          padding: 24px 20px;
+          width: 100%;
           max-width: 320px;
-          flex: 0 0 auto;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
           display: flex;
           flex-direction: column;
-          border: 1.5px solid #ececec;
-          color: #000; /* Ensures all text is black */
+          justify-content: space-between;
         }
+
         .webinar-card-header {
           display: flex;
           align-items: flex-start;
           gap: 16px;
         }
+
         .avatar {
           width: 60px;
           height: 60px;
           border-radius: 50%;
           object-fit: cover;
-          box-shadow: 0 1px 6px rgba(26, 35, 126, 0.14);
+          box-shadow: 0 1px 6px rgba(0, 0, 0, 0.14);
         }
+
         .webinar-title {
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           font-weight: 600;
           margin: 0 0 8px 0;
           color: #000;
         }
+
         .webinar-meta {
-          font-size: 0.98rem;
+          font-size: 0.95rem;
           color: #000;
           display: flex;
           flex-direction: column;
           gap: 2px;
         }
+
         .view-details-btn {
-          margin-top: 24px;
-          align-self: flex-end;
-          padding: 9px 22px;
-          background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+          margin-top: 20px;
+          align-self: flex-start;
+          padding: 9px 20px;
+          background: #000;
           color: #fff;
-          font-weight: 500;
+          font-weight: 600;
           border: none;
           border-radius: 8px;
           cursor: pointer;
           font-size: 1rem;
-          transition: background 0.18s, box-shadow 0.18s;
-          box-shadow: 0 2px 8px rgba(66, 165, 245, 0.09);
+          transition: background 0.2s ease;
         }
+
         .view-details-btn:hover {
-          background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+          background: #333;
+        }
+
+        @media (max-width: 600px) {
+          .webinar-card {
+            width: 100%;
+            max-width: none;
+          }
         }
       `}</style>
     </div>
