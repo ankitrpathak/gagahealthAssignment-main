@@ -11,7 +11,6 @@ import {
   Video,
   Eye,
 } from "lucide-react";
-import Image from "next/image";
 
 const webinars = [
   {
@@ -24,8 +23,7 @@ const webinars = [
     attendees: 1234,
     rating: 4.9,
     tags: ["Newborn Care", "First Month"],
-    avatar:
-      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2",
+    avatarColor: "#FF6B6B",
     featured: true,
   },
   {
@@ -38,8 +36,7 @@ const webinars = [
     attendees: 987,
     rating: 4.8,
     tags: ["Nutrition", "Feeding"],
-    avatar:
-      "https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2",
+    avatarColor: "#4ECDC4",
     featured: false,
   },
   {
@@ -52,8 +49,7 @@ const webinars = [
     attendees: 1456,
     rating: 4.9,
     tags: ["Sleep", "Development"],
-    avatar:
-      "https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2",
+    avatarColor: "#45B7D1",
     featured: false,
   },
   {
@@ -66,8 +62,7 @@ const webinars = [
     attendees: 2103,
     rating: 4.9,
     tags: ["Development", "Milestones"],
-    avatar:
-      "https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2",
+    avatarColor: "#96CEB4",
     featured: true,
   },
 ];
@@ -102,13 +97,15 @@ const WebinarCard = ({
       <div className="card-header">
         <div className="speaker-info">
           <div className="avatar-container">
-            <Image
-              src={webinar.avatar}
-              alt={webinar.speaker}
+            <div
               className="avatar"
-              width={60}
-              height={60}
-            />
+              style={{ backgroundColor: webinar.avatarColor }}
+            >
+              {webinar.speaker
+                .split(" ")
+                .map((name) => name[0])
+                .join("")}
+            </div>
             <div className="avatar-ring"></div>
           </div>
           <div className="speaker-details">
@@ -179,65 +176,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className={`app-container ${mounted ? "mounted" : ""}`}>
-      {/* Animated Background */}
-      <div className="bg-animation">
-        <div className="bg-shape shape-1"></div>
-        <div className="bg-shape shape-2"></div>
-        <div className="bg-shape shape-3"></div>
-        <div className="bg-shape shape-4"></div>
-      </div>
-
-      {/* Header Section */}
-      <div className="header-section">
-        <div className="header-content">
-          <div className="badge">
-            <Video className="w-4 h-4" />
-            Live Webinars
-          </div>
-          <h1 className="main-title">
-            Expert-Led Baby Care
-            <span className="gradient-text"> Webinars</span>
-          </h1>
-          <p className="subtitle">
-            Join renowned pediatricians and child care experts for live,
-            interactive sessions designed to support new parents on their
-            journey.
-          </p>
-          <div className="stats">
-            <div className="stat">
-              <span className="stat-number">50K+</span>
-              <span className="stat-label">Parents Joined</span>
-            </div>
-            <div className="stat">
-              <span className="stat-number">4.9★</span>
-              <span className="stat-label">Average Rating</span>
-            </div>
-            <div className="stat">
-              <span className="stat-number">100+</span>
-              <span className="stat-label">Expert Sessions</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Webinars Grid */}
-      <div className="webinars-section">
-        <div className="section-header">
-          <h2 className="section-title">Upcoming Sessions</h2>
-          <p className="section-subtitle">
-            Don&apos;t miss these expertly crafted sessions
-          </p>
-        </div>
-
-        <div className="webinars-grid">
-          {webinars.map((webinar, index) => (
-            <WebinarCard key={webinar.id} webinar={webinar} index={index} />
-          ))}
-        </div>
-      </div>
-
-      <style jsx>{`
+    <>
+      <style>{`
         .app-container {
           min-height: 100vh;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -517,9 +457,15 @@ export default function App() {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          object-fit: cover;
           border: 3px solid white;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 1.2rem;
+          color: white;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .avatar-ring {
@@ -745,6 +691,65 @@ export default function App() {
           }
         }
       `}</style>
-    </div>
+
+      <div className={`app-container ${mounted ? "mounted" : ""}`}>
+        {/* Animated Background */}
+        <div className="bg-animation">
+          <div className="bg-shape shape-1"></div>
+          <div className="bg-shape shape-2"></div>
+          <div className="bg-shape shape-3"></div>
+          <div className="bg-shape shape-4"></div>
+        </div>
+
+        {/* Header Section */}
+        <div className="header-section">
+          <div className="header-content">
+            <div className="badge">
+              <Video className="w-4 h-4" />
+              Live Webinars
+            </div>
+            <h1 className="main-title">
+              Expert-Led Baby Care
+              <span className="gradient-text"> Webinars</span>
+            </h1>
+            <p className="subtitle">
+              Join renowned pediatricians and child care experts for live,
+              interactive sessions designed to support new parents on their
+              journey.
+            </p>
+            <div className="stats">
+              <div className="stat">
+                <span className="stat-number">50K+</span>
+                <span className="stat-label">Parents Joined</span>
+              </div>
+              <div className="stat">
+                <span className="stat-number">4.9★</span>
+                <span className="stat-label">Average Rating</span>
+              </div>
+              <div className="stat">
+                <span className="stat-number">100+</span>
+                <span className="stat-label">Expert Sessions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Webinars Grid */}
+        <div className="webinars-section">
+          <div className="section-header">
+            <h2 className="section-title">Upcoming Sessions</h2>
+            <p className="section-subtitle">
+              Don't miss these expertly crafted sessions
+            </p>
+          </div>
+
+          <div className="webinars-grid">
+            {webinars.map((webinar, index) => (
+              <WebinarCard key={webinar.id} webinar={webinar} index={index} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
