@@ -20,3 +20,9 @@ One small thing I had to look up was the correct way to style buttons in a Next.
 Another thing I checked was how to properly create a new route using the Next.js app directory structure (creating a `webinars` folder with a `page.tsx` inside), since this was my first time using the app router. The official Next.js docs were helpful for confirming the correct structure.
 
 ---
+
+## Screenshot
+
+<img src="snapshot1.png" alt="Screenshot 1"></img>
+<img src="snapshot2.png" alt="Screenshot 2"></img>
+<img src="snapshot3.png" alt="Screenshot 3"></img>
