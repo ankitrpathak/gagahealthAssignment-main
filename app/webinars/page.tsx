@@ -17,6 +17,7 @@ const webinars = [
     date: "6/15/2025",
     avatar: "https://randomuser.me/api/portraits/men/32.jpg",
   },
+  // Add more webinars here if needed
 ];
 
 const WebinarCard: React.FC<(typeof webinars)[0]> = ({
@@ -49,7 +50,7 @@ export default function WebinarsPage() {
     <div className="webinars-bg">
       <div className="webinars-container">
         <h1 className="webinars-heading">🎥 Upcoming Live Webinars</h1>
-        <div className="webinar-cards-grid">
+        <div className="webinar-cards-row">
           {webinars.map((webinar) => (
             <WebinarCard key={webinar.id} {...webinar} />
           ))}
@@ -64,7 +65,7 @@ export default function WebinarsPage() {
           justify-content: center;
         }
         .webinars-container {
-          max-width: 800px;
+          max-width: 900px;
           margin: 40px auto;
           background: rgba(255, 255, 255, 0.9);
           border-radius: 24px;
@@ -80,30 +81,26 @@ export default function WebinarsPage() {
           color: #1a237e;
           font-family: "Segoe UI", "Inter", Arial, sans-serif;
         }
-        .webinar-cards-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 32px;
-        }
-        @media (max-width: 700px) {
-          .webinar-cards-grid {
-            grid-template-columns: 1fr;
-          }
+        .webinar-cards-row {
+          display: flex;
+          flex-direction: row;
+          gap: 15px;
+          overflow-x: auto;
+          padding-bottom: 8px;
+          scrollbar-width: thin;
         }
         .webinar-card {
           background: #fff;
           border-radius: 16px;
           box-shadow: 0 2px 12px rgba(26, 35, 126, 0.08);
           padding: 28px 20px 20px 20px;
+          min-width: 320px;
+          max-width: 320px;
+          flex: 0 0 auto;
           display: flex;
           flex-direction: column;
-          transition: transform 0.15s, box-shadow 0.15s;
           border: 1.5px solid #ececec;
-        }
-        .webinar-card:hover {
-          transform: translateY(-4px) scale(1.02);
-          box-shadow: 0 8px 32px rgba(26, 35, 126, 0.1);
-          border-color: #90caf9;
+          color: #000; /* Ensures all text is black */
         }
         .webinar-card-header {
           display: flex;
@@ -121,11 +118,11 @@ export default function WebinarsPage() {
           font-size: 1.2rem;
           font-weight: 600;
           margin: 0 0 8px 0;
-          color: #283593;
+          color: #000;
         }
         .webinar-meta {
           font-size: 0.98rem;
-          color: #546e7a;
+          color: #000;
           display: flex;
           flex-direction: column;
           gap: 2px;
