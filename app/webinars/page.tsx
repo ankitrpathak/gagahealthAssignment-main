@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 
 const webinars = [
   {
@@ -26,34 +26,6 @@ const webinars = [
   },
   {
     id: 4,
-    title: "Early Signs of Developmental Milestones",
-    speaker: "Dr. Karan Verma",
-    date: "6/25/2025",
-    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
-  },
-  {
-    id: 5,
-    title: "Caring for Your Newborn: The First 30 Days",
-    speaker: "Dr. Sumitra Meena",
-    date: "6/10/2025",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    id: 6,
-    title: "Feeding Fundamentals: Best Practices for Babies",
-    speaker: "Dr. Rohan Patel",
-    date: "6/15/2025",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    id: 7,
-    title: "Understanding Infant Sleep Patterns",
-    speaker: "Dr. Neha Sharma",
-    date: "6/20/2025",
-    avatar: "https://randomuser.me/api/portraits/women/65.jpg",
-  },
-  {
-    id: 8,
     title: "Early Signs of Developmental Milestones",
     speaker: "Dr. Karan Verma",
     date: "6/25/2025",
@@ -95,17 +67,43 @@ const WebinarCard: React.FC<(typeof webinars)[0]> = ({
 );
 
 export default function WebinarsPage() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const scrollAmount = 320;
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="webinars-bg">
       <div className="webinars-container">
-        <h1 className="webinars-heading">Upcoming Live Webinars</h1>
-        <div className="webinar-cards-scroll">
-          {webinars.map((webinar) => (
-            <WebinarCard key={webinar.id} {...webinar} />
-          ))}
+        <h1 className="webinars-heading">🎥 Upcoming Live Webinars</h1>
+        <div className="scroll-container">
+          <button className="scroll-btn left" onClick={() => scroll("left")}>
+            ◀
+          </button>
+          <div className="webinar-cards-scroll" ref={scrollRef}>
+            {webinars.map((webinar) => (
+              <WebinarCard key={webinar.id} {...webinar} />
+            ))}
+          </div>
+          <button className="scroll-btn right" onClick={() => scroll("right")}>
+            ▶
+          </button>
         </div>
       </div>
+
       <style jsx>{`
+        * {
+          color: #000 !important;
+        }
+
         .webinars-bg {
           min-height: 100vh;
           background: linear-gradient(135deg, #f3f8ff 0%, #e8f0fe 100%);
@@ -130,8 +128,12 @@ export default function WebinarsPage() {
           font-weight: 700;
           margin-bottom: 2.5rem;
           letter-spacing: 0.02em;
-          color: #1a237e;
-          font-family: "Segoe UI", "Inter", Arial, sans-serif;
+        }
+
+        .scroll-container {
+          position: relative;
+          display: flex;
+          align-items: center;
         }
 
         .webinar-cards-scroll {
@@ -139,13 +141,16 @@ export default function WebinarsPage() {
           flex-direction: row;
           gap: 20px;
           overflow-x: auto;
-          padding-bottom: 10px;
-          scrollbar-width: thin;
-          -webkit-overflow-scrolling: touch;
+          padding: 10px 0;
+          scrollbar-width: none;
+        }
+
+        .webinar-cards-scroll::-webkit-scrollbar {
+          display: none;
         }
 
         .webinar-card {
-          background: rgba(21, 50, 75, 0.85);
+          background: rgba(33, 150, 243, 0.85);
           border: 2px solid #000;
           border-radius: 16px;
           padding: 24px 20px;
@@ -156,7 +161,6 @@ export default function WebinarsPage() {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          color: #fff;
         }
 
         .webinar-card-header {
@@ -177,12 +181,10 @@ export default function WebinarsPage() {
           font-size: 1.1rem;
           font-weight: 600;
           margin: 0 0 8px 0;
-          color: #fff;
         }
 
         .webinar-meta {
           font-size: 0.95rem;
-          color: rgb(8, 9, 20);
           display: flex;
           flex-direction: column;
           gap: 2px;
@@ -193,7 +195,7 @@ export default function WebinarsPage() {
           align-self: flex-start;
           padding: 9px 20px;
           background: #000;
-          color: #fff;
+          color: #fff !important;
           font-weight: 600;
           border: none;
           border-radius: 8px;
@@ -204,6 +206,36 @@ export default function WebinarsPage() {
 
         .view-details-btn:hover {
           background: #333;
+        }
+
+        .scroll-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 1;
+          background: #1a237e;
+          color: #fff;
+          border: none;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+          font-weight: bold;
+          cursor: pointer;
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+
+        .scroll-container:hover .scroll-btn {
+          opacity: 1;
+        }
+
+        .scroll-btn.left {
+          left: -20px;
+        }
+
+        .scroll-btn.right {
+          right: -20px;
         }
       `}</style>
     </div>
