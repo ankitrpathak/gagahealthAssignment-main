@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 // Mock data array of webinars
