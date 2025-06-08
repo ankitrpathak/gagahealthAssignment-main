@@ -17,10 +17,24 @@ const webinars = [
     date: "6/15/2025",
     avatar: "https://randomuser.me/api/portraits/men/32.jpg",
   },
-  // Add more webinars here if needed
+  {
+    id: 3,
+    title: "Understanding Infant Sleep Patterns",
+    speaker: "Dr. Neha Sharma",
+    date: "6/20/2025",
+    avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+  },
+  {
+    id: 4,
+    title: "Early Signs of Developmental Milestones",
+    speaker: "Dr. Karan Verma",
+    date: "6/25/2025",
+    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+  },
 ];
 
 const WebinarCard: React.FC<(typeof webinars)[0]> = ({
+  id,
   title,
   speaker,
   date,
@@ -41,7 +55,22 @@ const WebinarCard: React.FC<(typeof webinars)[0]> = ({
         </div>
       </div>
     </div>
-    <button className="view-details-btn">View Details</button>
+    <button
+      style={{
+        padding: "8px 18px",
+        backgroundColor: "#0095f6",
+        color: "#fff",
+        border: "none",
+        borderRadius: "4px",
+        cursor: "pointer",
+        fontWeight: 600,
+      }}
+      onClick={() => {
+        console.log(`Viewing details for webinar ID: ${id}`);
+      }}
+    >
+      View Details
+    </button>
   </div>
 );
 
