@@ -71,7 +71,7 @@ export default function WebinarsPage() {
     <div className="webinars-bg">
       <div className="webinars-container">
         <h1 className="webinars-heading">🎥 Upcoming Live Webinars</h1>
-        <div className="webinar-cards-grid">
+        <div className="webinar-cards-scroll">
           {webinars.map((webinar) => (
             <WebinarCard key={webinar.id} {...webinar} />
           ))}
@@ -106,24 +106,29 @@ export default function WebinarsPage() {
           font-family: "Segoe UI", "Inter", Arial, sans-serif;
         }
 
-        .webinar-cards-grid {
+        .webinar-cards-scroll {
           display: flex;
-          flex-wrap: wrap;
+          flex-direction: row;
           gap: 20px;
-          justify-content: center;
+          overflow-x: auto;
+          padding-bottom: 10px;
+          scrollbar-width: thin;
+          -webkit-overflow-scrolling: touch;
         }
 
         .webinar-card {
-          background: #fff;
+          background: rgba(33, 150, 243, 0.85); /* Opaque blue */
           border: 2px solid #000;
           border-radius: 16px;
           padding: 24px 20px;
-          width: 100%;
-          max-width: 320px;
+          min-width: 300px;
+          max-width: 300px;
+          flex: 0 0 auto;
           box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          color: #fff;
         }
 
         .webinar-card-header {
@@ -137,19 +142,19 @@ export default function WebinarsPage() {
           height: 60px;
           border-radius: 50%;
           object-fit: cover;
-          box-shadow: 0 1px 6px rgba(0, 0, 0, 0.14);
+          box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
         }
 
         .webinar-title {
           font-size: 1.1rem;
           font-weight: 600;
           margin: 0 0 8px 0;
-          color: #000;
+          color: #fff;
         }
 
         .webinar-meta {
           font-size: 0.95rem;
-          color: #000;
+          color: #f1f1f1;
           display: flex;
           flex-direction: column;
           gap: 2px;
@@ -171,13 +176,6 @@ export default function WebinarsPage() {
 
         .view-details-btn:hover {
           background: #333;
-        }
-
-        @media (max-width: 600px) {
-          .webinar-card {
-            width: 100%;
-            max-width: none;
-          }
         }
       `}</style>
     </div>
