@@ -739,7 +739,7 @@ export default function App() {
           <div className="section-header">
             <h2 className="section-title">Upcoming Sessions</h2>
             <p className="section-subtitle">
-              Don't miss these expertly crafted sessions
+              Don&apos;t miss these expertly crafted sessions
             </p>
           </div>
 
