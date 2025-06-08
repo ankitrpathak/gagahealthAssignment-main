@@ -3,7 +3,7 @@
 ## Live URL
 
 You can view the live Vercel deployment here:  
-**[Live Site]([https://gagahealth-assignment-main.vercel.app/webinars)**
+**[Live Site](https://gagahealth-assignment-main.vercel.app/webinars)**
 
 ---
 
