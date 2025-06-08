@@ -31,6 +31,34 @@ const webinars = [
     date: "6/25/2025",
     avatar: "https://randomuser.me/api/portraits/men/45.jpg",
   },
+  {
+    id: 5,
+    title: "Caring for Your Newborn: The First 30 Days",
+    speaker: "Dr. Sumitra Meena",
+    date: "6/10/2025",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+  },
+  {
+    id: 6,
+    title: "Feeding Fundamentals: Best Practices for Babies",
+    speaker: "Dr. Rohan Patel",
+    date: "6/15/2025",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+  },
+  {
+    id: 7,
+    title: "Understanding Infant Sleep Patterns",
+    speaker: "Dr. Neha Sharma",
+    date: "6/20/2025",
+    avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+  },
+  {
+    id: 8,
+    title: "Early Signs of Developmental Milestones",
+    speaker: "Dr. Karan Verma",
+    date: "6/25/2025",
+    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+  },
 ];
 
 const WebinarCard: React.FC<(typeof webinars)[0]> = ({
@@ -70,7 +98,7 @@ export default function WebinarsPage() {
   return (
     <div className="webinars-bg">
       <div className="webinars-container">
-        <h1 className="webinars-heading">🎥 Upcoming Live Webinars</h1>
+        <h1 className="webinars-heading">Upcoming Live Webinars</h1>
         <div className="webinar-cards-scroll">
           {webinars.map((webinar) => (
             <WebinarCard key={webinar.id} {...webinar} />
@@ -117,7 +145,7 @@ export default function WebinarsPage() {
         }
 
         .webinar-card {
-          background: rgba(33, 150, 243, 0.85); /* Opaque blue */
+          background: rgba(21, 50, 75, 0.85);
           border: 2px solid #000;
           border-radius: 16px;
           padding: 24px 20px;
@@ -154,7 +182,7 @@ export default function WebinarsPage() {
 
         .webinar-meta {
           font-size: 0.95rem;
-          color: #f1f1f1;
+          color: rgb(8, 9, 20);
           display: flex;
           flex-direction: column;
           gap: 2px;
